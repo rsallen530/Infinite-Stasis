@@ -33,16 +33,9 @@ public class Enemy : MonoBehaviour
             transform.position += transform.forward * speed * Time.deltaTime;
 
         }
-       
-   
-    
-    
-    
     }
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
     }
-
-
 }
