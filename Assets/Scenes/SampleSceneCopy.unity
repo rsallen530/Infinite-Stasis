@@ -2415,6 +2415,82 @@ Transform:
   - {fileID: 1512557175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+--- !u!4 &1926405469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 369585737069779787, guid: d88cef83d03161340920371c767a85a5, type: 3}
+  m_PrefabInstance: {fileID: 2297983602199669341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2102314570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 315231668398571569, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407397008654204311, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850060465954139623, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850060465954139623, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952481167796899950, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+      propertyPath: m_Name
+      value: Pistol
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8e0defb44f4aee44b2e9b2cf81ee4a3, type: 3}
+=======
 --- !u!1 &1939620162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,6 +3018,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090269353}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+>>>>>>> Stashed changes
 --- !u!1001 &2297983602199669341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3025,6 +3102,9 @@ SceneRoots:
   - {fileID: 1594183792}
   - {fileID: 1742160614}
   - {fileID: 1642347000}
+<<<<<<< Updated upstream
+  - {fileID: 2102314570}
+=======
   - {fileID: 1361143699}
   - {fileID: 1942837892}
   - {fileID: 780702410}
@@ -3036,3 +3116,4 @@ SceneRoots:
   - {fileID: 569972578}
   - {fileID: 91651180}
   - {fileID: 1424030276}
+>>>>>>> Stashed changes

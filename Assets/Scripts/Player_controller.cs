@@ -9,6 +9,7 @@ public class Player_controller : MonoBehaviour
     public GameObject camera;
     public float speed = 10f;
     public float mouseSpeed = 10f;
+    public float playerHealth = 99;
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;

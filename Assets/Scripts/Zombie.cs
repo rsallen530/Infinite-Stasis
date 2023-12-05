@@ -2,23 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Zombie : Enemy
 {
-    public float enemyHealth = 99; 
-    public float speed = 20f;
-    public float midDist = 1f;
-    public Transform target; 
-
     // Start is called before the first frame update
     void Start()
-    { if (target == null)
+    {
+        if (target == null)
         {
             if (GameObject.FindWithTag("Player") != null)
             {
                 target = GameObject.FindWithTag("Player").GetComponent<Transform>();
             }
         }
-        
+
     }
 
     // Update is called once per frame
@@ -34,6 +30,11 @@ public class Enemy : MonoBehaviour
             transform.position += transform.forward * speed * Time.deltaTime;
 
         }
+
+
+
+
+
     }
     public void SetTarget(Transform newTarget)
     {
