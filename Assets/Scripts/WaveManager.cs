@@ -62,6 +62,7 @@ public class WaveManager : MonoBehaviour
         //There is still a wave, continue
         if (GameObject.Find("Wave" + wave))
         {
+            if (currentVariation != null) currentVariation.SetActive(false);
             currentWave = GameObject.Find("Wave" + wave);
             Debug.Log("Current wave is " + wave);
             foreach (Transform child in currentWave.transform)

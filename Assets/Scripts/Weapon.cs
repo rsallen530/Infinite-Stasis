@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int ammo = 100;
-    public int maxAmmo = 100;
+    public int ammo = 15;
+    public int maxAmmo = 15;
+    public int allAmmo = 100;
+    public int weaponSlot = 0;
+    public int reloadTime = 2;
+
     public bool melee = false;
+    public bool reloading = false;
+
+    public float spread = 1;
+    public float shootInterval = 0.5f;
+    public float shootCooldown = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +29,37 @@ public class Weapon : MonoBehaviour
         
     }
 
-    void Fire()
+    public void Fire()
     {
         if (!melee)
         {
-            if (ammo <= 0)
+            if (!reloading && maxAmmo > 0 && shootCooldown + shootInterval < Time.time)
             {
-                // Reload here
-            }
-            else
-            {
-                ammo -= 1;
+                shootCooldown = Time.time;
+                if (ammo <= 0)
+                {
+                    Debug.Log("Reloading");
+                    StartCoroutine(ReloadTime());
+                }
+                else
+                {
+                    Debug.Log("Fire");
+                    ammo--;
+                }
             }
         }
+    }
+
+    IEnumerator ReloadTime()
+    {
+        reloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        for (int i = 0; i < maxAmmo || maxAmmo == 0; i++)
+        {
+            ammo++;
+            allAmmo--;
+        }
+        reloading = false;
+        Debug.Log("Reloaded");
     }
 }
