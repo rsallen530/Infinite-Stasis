@@ -495,14 +495,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1614724aa596747bfaea111f6d3c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 15
-  maxAmmo: 15
-  allAmmo: 100
-  weaponSlot: 0
+  ammo: 2
+  maxAmmo: 2
+  allAmmo: 10
+  weaponSlot: 1
   reloadTime: 2
   melee: 0
   reloading: 0
-  spread: 1
+  spread: {x: 0.5, y: 0.5, z: 0.5}
   shootInterval: 0.5
   shootCooldown: 0
 --- !u!1 &7847316279787057658

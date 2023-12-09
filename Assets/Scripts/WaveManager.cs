@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckEnemies();
         if (remainingEnemies == 0 && isStartingWave == false)
         {
             Debug.Log("No more enemies");
@@ -42,15 +44,17 @@ public class WaveManager : MonoBehaviour
         {
             remainingEnemies++;
         }*/
+        int tempCheck = 0;
         foreach (Transform child in currentVariation.transform)
         {
             //Debug.Log("The name of this object is " + child.name);
             if (child.gameObject.GetComponent<Enemy>())
             {
-                remainingEnemies++;
+                tempCheck++;
             }
         }
-        Debug.Log("The amount of enemies is " +  remainingEnemies);
+        remainingEnemies = tempCheck;
+        //Debug.Log("The amount of enemies is " +  remainingEnemies);
     }
 
     public void StartWave()
@@ -85,7 +89,7 @@ public class WaveManager : MonoBehaviour
         //No more waves, player has won
         else
         {
-
+            SceneManager.LoadScene(2);
         }
     }
 

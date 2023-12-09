@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float enemyHealth = 99; 
-    public float speed = 20f;
+    public float enemyHealth = 10; 
+    public float speed = 3f;
     public float midDist = 1f;
     public Transform target; 
 
@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyHealth <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
+
         if (target == null)
             return;
         //face the target 

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_controller : MonoBehaviour
 {
@@ -16,7 +18,8 @@ public class Player_controller : MonoBehaviour
 
     public float speed = 10f;
     public float mouseSpeed = 10f;
-    public float playerHealth = 99;
+    public float playerHealth = 100;
+    public float maxHealth = 100;
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
@@ -33,6 +36,8 @@ public class Player_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerHealth < 0) SceneManager.LoadScene(3);
+
         //Fire weapon
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -43,17 +48,21 @@ public class Player_controller : MonoBehaviour
         }
 
         // Weapon slots
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (currentWeapon != null)
+            if (!currentWeapon.reloading)
         {
-            SwapWeapon(0);
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SwapWeapon(1);
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            SwapWeapon(2);
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                SwapWeapon(0);
+            }
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                SwapWeapon(1);
+            }
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                SwapWeapon(2);
+            }
         }
 
         // Movement
@@ -79,6 +88,13 @@ public class Player_controller : MonoBehaviour
         {
             WeaponPickup();
         }
+        if (Input.GetKey(KeyCode.R))
+        {
+            if (currentWeapon != null)
+            {
+                currentWeapon.Reload();
+            }
+        }
 
         yaw += mouseSpeed * Input.GetAxis("Mouse X");
         pitch -= mouseSpeed * Input.GetAxis("Mouse Y");
@@ -90,7 +106,12 @@ public class Player_controller : MonoBehaviour
 
     void WeaponPickup()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2.00f))
+        bool canPickup = true;
+        if (currentWeapon != null)
+            if (currentWeapon.reloading)
+                canPickup = false;
+
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit, 2.00f) && canPickup)
         {
             GameObject interaction = hit.transform.gameObject;
             //Hit Something
@@ -140,6 +161,30 @@ public class Player_controller : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            playerHealth -= 15;
+        }
+        else if (other.tag == "HealthPack")
+        {
+            OnHeal(30);
+            Destroy(other.gameObject);
+        }
+    }
+    private void OnHeal(float heal)
+    {
+        if (playerHealth + heal > maxHealth)
+        {
+            playerHealth = maxHealth;
+        }
+        else
+        {
+            playerHealth += heal;
         }
     }
 }

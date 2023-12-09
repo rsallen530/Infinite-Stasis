@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -13,7 +14,8 @@ public class Weapon : MonoBehaviour
     public bool melee = false;
     public bool reloading = false;
 
-    public float spread = 1;
+    public Vector3 spread = new Vector3(0.1f, 0.1f, 0.1f);
+
     public float shootInterval = 0.5f;
     public float shootCooldown = 0;
 
@@ -29,25 +31,55 @@ public class Weapon : MonoBehaviour
         
     }
 
-    public void Fire()
+    public virtual void Fire()
     {
         if (!melee)
         {
-            if (!reloading && maxAmmo > 0 && shootCooldown + shootInterval < Time.time)
+            if (!reloading && allAmmo > 0 && shootCooldown + shootInterval < Time.time)
             {
                 shootCooldown = Time.time;
                 if (ammo <= 0)
                 {
-                    Debug.Log("Reloading");
-                    StartCoroutine(ReloadTime());
+                    Reload();
                 }
                 else
                 {
-                    Debug.Log("Fire");
+                    Shoot();
                     ammo--;
                 }
             }
         }
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Fire");
+        if (Physics.Raycast(transform.position, CalculateSpread(), out RaycastHit hit, float.MaxValue))
+        {
+            GameObject target = hit.transform.gameObject;
+            if (target.GetComponent<Enemy>() != null)
+            {
+                Debug.Log("Hit Enemy!");
+                target.GetComponent<Enemy>().enemyHealth -= 1;
+            }
+        }
+    }
+
+    public void Reload()
+    {
+        if (!reloading && allAmmo > 0)
+        {
+            Debug.Log("Reloading");
+            StartCoroutine(ReloadTime());
+        }
+    }
+
+    private Vector3 CalculateSpread()
+    {
+        Vector3 spreadForward = transform.forward;
+        spreadForward += new Vector3(Random.Range(-spread.x, spread.x), Random.Range(-spread.y, spread.y), Random.Range(-spread.z, spread.z));
+        spreadForward.Normalize();
+        return spreadForward;
     }
 
     IEnumerator ReloadTime()
@@ -59,6 +91,7 @@ public class Weapon : MonoBehaviour
             ammo++;
             allAmmo--;
         }
+        if (ammo > maxAmmo) ammo = maxAmmo;
         reloading = false;
         Debug.Log("Reloaded");
     }
